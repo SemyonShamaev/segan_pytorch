@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.idea/
+rrrrrrr.py
+/data_veu4
+/ckpt_segan+
