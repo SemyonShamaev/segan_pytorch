@@ -106,3 +106,6 @@ venv.bak/
 rrrrrrr.py
 /data_veu4
 /ckpt_segan+
+/data_silent_tmp
+/synth_segan+
+/synth_wsegan

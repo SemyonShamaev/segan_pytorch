@@ -22,6 +22,7 @@ import json
 import os
 from torch import autograd
 from scipy import signal
+from datetime import datetime
 
 
 # custom weights initialization called on netG and netD
@@ -691,9 +692,13 @@ class WSEGAN(SEGAN):
                                 pow_loss.item(),
                                 den_loss.item())
 
-                log += 'btime: {:.4f} s, mbtime: {:.4f} s' \
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
+
+                log += 'btime: {:.4f} s, mbtime: {:.4f} s, now: {}' \
                        ''.format(timings[-1],
-                                 np.mean(timings))
+                                 np.mean(timings),
+                                 current_time)
                 print(log)
                 self.writer.add_scalar('D_loss', d_loss.item(),
                                        iteration)
@@ -717,6 +722,8 @@ class WSEGAN(SEGAN):
                                           iteration, bins='sturges')
                 self.writer.add_histogram('noisy', noisy.cpu().data,
                                           iteration, bins='sturges')
+                #print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                #print(noisy.cpu().data)
                 if hasattr(self.G, 'skips'):
                     for skip_id, alpha in self.G.skips.items():
                         skip = alpha['alpha']
